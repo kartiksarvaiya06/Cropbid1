@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        section {
+            padding: 2rem;
+            text-align: center;
+        }
+        button {
+            padding: 0.8rem 1.5rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+        .graph {
+            margin: 2rem auto;
+            width: 80%;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        window.onload = function() {
+            const ctx = document.getElementById('cropChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['January', 'February', 'March', 'April', 'May'],
+                    datasets: [{
+                        label: 'Crop Value Trend',
+                        data: [100, 120, 95, 130, 150],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        },
+                        tooltip: {
+                            enabled: true,
+                        },
+                    },
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Farmer Dashboard</h1>
+    </header>
+    <section>
+        <h2>Welcome, Farmer!</h2>
+        <p>Manage your crops and monitor market trends.</p>
+        <button onclick="alert('Add Crop Feature Coming Soon')">Add Crop</button>
+        <button onclick="alert('View Orders Feature Coming Soon')">View Orders</button>
+        <div class="graph">
+            <canvas id="cropChart"></canvas>
+        </div>
+    </section>
+</body>
+</html>
