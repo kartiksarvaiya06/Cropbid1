@@ -28,6 +28,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin: 1rem;
             transition: background-color 0.3s, transform 0.3s;
         }
         button:hover {
@@ -69,6 +70,9 @@
                 }
             });
         }
+        function goToAddCropPage() {
+            window.location.href = "add_crop.html"; // Redirect to Add Crop page
+        }
     </script>
 </head>
 <body>
@@ -78,7 +82,7 @@
     <section>
         <h2>Welcome, Farmer!</h2>
         <p>Manage your crops and monitor market trends.</p>
-        <button onclick="alert('Add Crop Feature Coming Soon')">Add Crop</button>
+        <button onclick="goToAddCropPage()">Add Crop</button>
         <button onclick="alert('View Orders Feature Coming Soon')">View Orders</button>
         <div class="graph">
             <canvas id="cropChart"></canvas>
