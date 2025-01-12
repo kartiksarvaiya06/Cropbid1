@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        section {
+            padding: 2rem;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+        th, td {
+            padding: 1rem;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .status {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Orders</h1>
+    </header>
+    <section>
+        <h2>Your Orders</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Crop Name</th>
+                    <th>Quantity (kg)</th>
+                    <th>Price per kg (₹)</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#001</td>
+                    <td>Tomato</td>
+                    <td>50</td>
+                    <td>₹30</td>
+                    <td class="status">Pending</td>
+                </tr>
+                <tr>
+                    <td>#002</td>
+                    <td>Potato</td>
+                    <td>100</td>
+                    <td>₹20</td>
+                    <td class="status">Completed</td>
+                </tr>
+                <tr>
+                    <td>#003</td>
+                    <td>Wheat</td>
+                    <td>200</td>
+                    <td>₹25</td>
+                    <td class="status">Pending</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>

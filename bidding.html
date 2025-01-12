@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bidding System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        section {
+            padding: 2rem;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+        th, td {
+            padding: 1rem;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        button {
+            padding: 0.8rem 1.5rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bidding System</h1>
+    </header>
+    <section>
+        <h2>Active Bids</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Crop Name</th>
+                    <th>Current Bid (₹)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tomato</td>
+                    <td>₹30</td>
+                    <td>
+                        <button onclick="placeBid('Tomato', 35)">Bid ₹35</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Potato</td>
+                    <td>₹20</td>
+                    <td>
+                        <button onclick="placeBid('Potato', 25)">Bid ₹25</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Wheat</td>
+                    <td>₹25</td>
+                    <td>
+                        <button onclick="placeBid('Wheat', 30)">Bid ₹30</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Rice</td>
+                    <td>₹40</td>
+                    <td>
+                        <button onclick="placeBid('Rice', 45)">Bid ₹45</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <script>
+        function placeBid(cropName, bidAmount) {
+            alert(`Bid placed for ${cropName} at ₹${bidAmount}!`);
+        }
+    </script>
+</body>
+</html>

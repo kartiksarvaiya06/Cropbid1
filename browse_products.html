@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        section {
+            padding: 2rem;
+            text-align: center;
+        }
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem auto;
+            width: 90%;
+            max-width: 800px;
+        }
+        .product-item {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            text-align: center;
+        }
+        .product-item img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .product-item h3 {
+            color: #4CAF50;
+            margin: 0.5rem 0;
+        }
+        button {
+            padding: 0.8rem 1.5rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 1rem;
+        }
+        button:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Browse Products</h1>
+    </header>
+    <section>
+        <div class="product-list">
+            <div class="product-item">
+                <img src="tomato.jpg" alt="Tomato">
+                <h3>Fresh Tomatoes</h3>
+                <p>₹30/kg</p>
+                <button onclick="alert('Added to Cart')">Add to Cart</button>
+            </div>
+            <div class="product-item">
+                <img src="potato.jpg" alt="Potato">
+                <h3>Organic Potatoes</h3>
+                <p>₹20/kg</p>
+                <button onclick="alert('Added to Cart')">Add to Cart</button>
+            </div>
+            <!-- Add more products here -->
+        </div>
+    </section>
+</body>
+</html>

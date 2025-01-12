@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        section {
+            padding: 2rem;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+        th, td {
+            padding: 1rem;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        button {
+            padding: 0.8rem 1.5rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 1rem 0;
+        }
+        button:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+        .total {
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>View Cart</h1>
+    </header>
+    <section>
+        <h2>Your Cart</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price per kg (₹)</th>
+                    <th>Total (₹)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Fresh Tomatoes</td>
+                    <td>2 kg</td>
+                    <td>₹30</td>
+                    <td>₹60</td>
+                    <td><button onclick="alert('Removed from Cart')">Remove</button></td>
+                </tr>
+                <tr>
+                    <td>Organic Potatoes</td>
+                    <td>3 kg</td>
+                    <td>₹20</td>
+                    <td>₹60</td>
+                    <td><button onclick="alert('Removed from Cart')">Remove</button></td>
+                </tr>
+                <!-- Add more cart items here -->
+            </tbody>
+        </table>
+        <div class="total">
+            <p>Total Amount: ₹120</p>
+            <button onclick="alert('Proceeding to Checkout')">Checkout</button>
+        </div>
+    </section>
+</body>
+</html>

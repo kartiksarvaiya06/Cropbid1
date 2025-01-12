@@ -54,14 +54,55 @@
             background-color: #45a049;
             transform: scale(1.1);
         }
+        .graph {
+            margin-top: 2rem;
+            width: 100%;
+            max-width: 600px;
+            display: none;
+        }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function addCrop() {
+            alert('Crop Added Successfully!');
+            showGraph();
+        }
+
+        function showGraph() {
+            document.querySelector('.graph').style.display = 'block';
+            const ctx = document.getElementById('priceChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Tomato', 'Potato', 'Wheat', 'Rice'],
+                    datasets: [{
+                        label: 'Price per kg (₹)',
+                        data: [30, 20, 25, 40],
+                        backgroundColor: ['#4CAF50', '#45a049', '#43A047', '#66BB6A']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        },
+                        tooltip: {
+                            enabled: true,
+                        },
+                    },
+                }
+            });
+        }
+    </script>
 </head>
 <body>
     <header>
         <h1>Add Crop</h1>
     </header>
     <section>
-        <form>
+        <form onsubmit="event.preventDefault(); addCrop();">
             <label for="cropName">Crop Name</label>
             <input type="text" id="cropName" placeholder="Enter crop name" required>
 
@@ -74,8 +115,11 @@
             <label for="cropDescription">Description</label>
             <textarea id="cropDescription" placeholder="Enter details about the crop" rows="4"></textarea>
 
-            <button type="submit" onclick="alert('Crop Added Successfully!')">Add Crop</button>
+            <button type="submit">Add Crop</button>
         </form>
+        <div class="graph">
+            <canvas id="priceChart"></canvas>
+        </div>
     </section>
 </body>
 </html>
