@@ -3,59 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CropBid</title>
+    <title>CropBid - Natural Farming Marketplace</title>
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e6f3e9, #fffde7);
             overflow-x: hidden;
+            line-height: 1.6;
         }
         header {
-            background-color: #4CAF50;
+            background: linear-gradient(90deg, #26A69A, #C0CA33, #FFCA28);
             color: white;
-            padding: 1rem;
+            padding: 2rem;
             text-align: center;
+            animation: slideDown 1s ease;
         }
+        header h1 { font-size: 2.5rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); }
         nav {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            flex-wrap: wrap;
         }
         nav a {
             text-decoration: none;
-            color: #4CAF50;
-            font-weight: bold;
+            color: #26A69A;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s, transform 0.3s;
         }
+        nav a:hover { color: #FFCA28; transform: translateY(-3px); }
         .banner {
             text-align: center;
-            padding: 2rem;
-            background-color: #eaf7ea;
-            animation: fadeIn 2s;
+            padding: 4rem 2rem;
+            background: url('https://via.placeholder.com/1500x500?text=Nature') no-repeat center/cover;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease;
         }
-        .banner h1 {
-            font-size: 2rem;
-        }
+        .banner h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 0; }
+        .banner p { font-size: clamp(1rem, 3vw, 1.2rem); margin: 1rem 0; }
         .cta-buttons {
-            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
         .cta-buttons a {
             text-decoration: none;
-            padding: 0.8rem 1.5rem;
-            margin: 0.5rem;
+            padding: 1rem 2rem;
             color: white;
-            background-color: #4CAF50;
-            border-radius: 5px;
-            transition: transform 0.3s, background-color 0.3s;
+            background: linear-gradient(45deg, #26A69A, #C0CA33);
+            border-radius: 25px;
+            font-weight: 600;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         .cta-buttons a:hover {
-            background-color: #45a049;
             transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #C0CA33, #FFCA28);
         }
         footer {
-            background-color: #333;
+            background: linear-gradient(90deg, #26A69A, #C0CA33);
             color: white;
             text-align: center;
             padding: 1rem;
@@ -63,40 +79,41 @@
             bottom: 0;
             width: 100%;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+        @media (max-width: 768px) {
+            header { padding: 1.5rem; }
+            nav { gap: 1rem; padding: 0.5rem; }
+            .banner { padding: 2rem 1rem; }
+            .cta-buttons a { padding: 0.8rem 1.5rem; }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <script>
-        function navigateToPage(page) {
-            window.location.href = page;
-        }
+        function navigateToPage(page) { window.location.href = page; }
     </script>
 </head>
 <body>
     <header>
         <h1>CropBid</h1>
     </header>
-
     <nav>
         <a href="#">Home</a>
         <a href="#">About Us</a>
         <a href="#">How It Works</a>
+        <a href="forum.html">Community</a>
         <a href="#">Login</a>
     </nav>
-
     <section class="banner">
-        <h1>Connecting Farmers Directly to You</h1>
-        <p>Fresh produce at fair prices. Empowering farmers, delivering quality.</p>
+        <h1>Bridging Natural Farmers & Conscious Consumers</h1>
+        <p>Fresh, verified natural produce at fair prices.</p>
         <div class="cta-buttons">
             <a href="farmer.html" onclick="navigateToPage('farmer.html')">I’m a Farmer</a>
-            <a href="customer.html" onclick="navigateToPage('customer.html')">from Marketyard</a>
+            <a href="customer.html" onclick="navigateToPage('customer.html')">I’m a Consumer</a>
         </div>
     </section>
-
     <footer>
-        <p>&copy; 2025 Farm-to-Customer Platform. All Rights Reserved.</p>
+        <p>© 2025 CropBid. All Rights Reserved.</p>
     </footer>
 </body>
 </html>

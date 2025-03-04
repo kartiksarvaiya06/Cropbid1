@@ -3,59 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Cart</title>
+    <title>View Cart - CropBid</title>
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e6f3e9, #fffde7);
         }
         header {
-            background-color: #4CAF50;
+            background: linear-gradient(90deg, #26A69A, #C0CA33, #FFCA28);
             color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        section {
             padding: 2rem;
             text-align: center;
+            animation: slideDown 1s ease;
+        }
+        section {
+            padding: 3rem 1rem;
+            text-align: center;
+            animation: fadeIn 1.5s ease;
         }
         table {
-            width: 100%;
+            width: 90%;
             max-width: 800px;
-            margin: auto;
+            margin: 2rem auto;
             border-collapse: collapse;
-            margin-top: 2rem;
         }
         th, td {
             padding: 1rem;
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             text-align: left;
         }
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-        button {
+        th { background: linear-gradient(45deg, #26A69A, #C0CA33); color: white; }
+        .total { font-weight: bold; margin-top: 1rem; color: #26A69A; }
+        .action a, .checkout a {
             padding: 0.8rem 1.5rem;
-            background-color: #4CAF50;
+            background: linear-gradient(45deg, #26A69A, #C0CA33);
             color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-            margin: 1rem 0;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        button:hover {
-            background-color: #45a049;
+        .action a:hover, .checkout a:hover {
             transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #C0CA33, #FFCA28);
         }
-        .total {
-            font-weight: bold;
-            margin-top: 1rem;
+        .eco-impact { color: #26A69A; margin-top: 1rem; }
+        @media (max-width: 768px) {
+            table { font-size: 0.9rem; }
+            section { padding: 2rem 1rem; }
+            .action a, .checkout a { padding: 0.6rem 1rem; }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        function removeFromCart(productName) { alert(`${productName} removed from cart!`); }
+        function checkout() {
+            alert('Proceeding to Checkout! +30 Points');
+            document.querySelector('.eco-impact').innerText = "Eco Impact: Saved 2.5 kg CO2 by choosing natural produce!";
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -79,21 +87,23 @@
                     <td>2 kg</td>
                     <td>₹30</td>
                     <td>₹60</td>
-                    <td><button onclick="alert('Removed from Cart')">Remove</button></td>
+                    <td class="action"><a href="#" onclick="removeFromCart('Fresh Tomatoes')">Remove</a></td>
                 </tr>
                 <tr>
                     <td>Organic Potatoes</td>
                     <td>3 kg</td>
                     <td>₹20</td>
                     <td>₹60</td>
-                    <td><button onclick="alert('Removed from Cart')">Remove</button></td>
+                    <td class="action"><a href="#" onclick="removeFromCart('Organic Potatoes')">Remove</a></td>
                 </tr>
-                <!-- Add more cart items here -->
             </tbody>
         </table>
         <div class="total">
             <p>Total Amount: ₹120</p>
-            <button onclick="alert('Proceeding to Checkout')">Checkout</button>
+            <div class="checkout">
+                <a href="#" onclick="checkout()">Checkout</a>
+            </div>
+            <p class="eco-impact"></p>
         </div>
     </section>
 </body>

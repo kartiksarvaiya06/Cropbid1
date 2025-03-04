@@ -3,170 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marketyard Dashboard</title>
+    <title>Consumer Dashboard - CropBid</title>
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e6f3e9, #fffde7);
         }
         header {
-            background-color: #4CAF50;
+            background: linear-gradient(90deg, #26A69A, #C0CA33, #FFCA28);
             color: white;
-            padding: 1rem;
+            padding: 2rem;
             text-align: center;
+            animation: slideDown 1s ease;
         }
         nav {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            flex-wrap: wrap;
         }
-        nav a {
-            text-decoration: none;
-            color: #4CAF50;
-            font-weight: bold;
-        }
-        .profile, .notifications, .order-history, .featured-products, .search-bar {
+        nav a { text-decoration: none; color: #26A69A; font-weight: 600; transition: color 0.3s; }
+        nav a:hover { color: #FFCA28; }
+        section {
             margin: 2rem auto;
-            padding: 1rem;
+            padding: 2rem;
             width: 90%;
-            max-width: 800px;
+            max-width: 900px;
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease;
         }
-        h2 {
-            color: #4CAF50;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 1rem;
-            border: 1px solid #ccc;
-            text-align: left;
-        }
-        th {
-            background-color: #4CAF50;
+        h2 { color: #26A69A; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 1rem; border: 1px solid #ddd; text-align: left; }
+        th { background: linear-gradient(45deg, #26A69A, #C0CA33); color: white; }
+        .notifications { color: #d32f2f; font-weight: 600; }
+        .center-buttons { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+        .center-buttons a {
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #26A69A, #C0CA33);
             color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        input[type="search"] {
-            width: 80%;
-            padding: 0.8rem;
-            margin-top: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            padding: 0.8rem 1.5rem;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-            margin: 1rem 0;
-        }
-        button:hover {
-            background-color: #45a049;
+        .center-buttons a:hover {
             transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #C0CA33, #FFCA28);
         }
-        .center-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
+        @media (max-width: 768px) {
+            section { padding: 1rem; }
+            table { font-size: 0.9rem; }
+            .center-buttons { gap: 1rem; }
+            .center-buttons a { padding: 0.8rem 1.5rem; }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <script>
-        function browseProducts() {
-            window.location.href = "browse_products.html"; // Redirect to Browse Products page
-        }
-
-        function viewCart() {
-            window.location.href = "view_cart.html"; // Redirect to View Cart page
-        }
-
-        function searchProducts() {
-            alert('Search Feature Coming Soon');
+        window.onload = function() {
+            setTimeout(() => alert("New natural produce available!"), 2000);
         }
     </script>
 </head>
 <body>
     <header>
-        <h1>Marketyard Dashboard</h1>
+        <h1>Consumer Dashboard</h1>
     </header>
-
     <nav>
         <a href="#">Home</a>
         <a href="#">Profile</a>
-        <a href="#">Order History</a>
-        <a href="#">Notifications</a>
+        <a href="#order">Order History</a>
+        <a href="forum.html">Community</a>
     </nav>
-
     <section class="profile">
-        <h2>Marketyard Profile</h2>
-        <p>Name: Amreli Marketyard</[_{{{CITATION{{{_1{](https://github.com/buribalazs/smooth-drag-order/tree/7b40d21d076c3e31765f61481f537beaf4c5ec9f/README.md)[_{{{CITATION{{{_2{](https://github.com/ashwani20/EventManagementWebApp/tree/ffba2d30b4d6269453b28390006327b746304b8c/eventmanagerbrowseevents.php)[_{{{CITATION{{{_3{](https://github.com/nickHubchak/new-sun-and-fun/tree/92dd4c1c8805dded74295a5059ef7d3351dfc569/admin-site%2Fdashboard%2Fview-admin.php)[_{{{CITATION{{{_4{](https://github.com/shunnpyaepyaeaung/plant-store-php-project/tree/cb927e1225b5544cf9b2a0aeeefbf7dc54401a8c/view-cart.php)[_{{{CITATION{{{_5{](https://github.com/jahidmunna/purera/tree/3b609d0f95fc9b01b07bb1b0f95b8563961f4749/editcustomer.php)[_{{{CITATION{{{_6{](https://github.com/tanvirtanjum/Business-Tool-v5/tree/38c54584f8d0645f4d4f6561400aba14ab7febad/storage%2Fframework%2Fviews%2Fd1c05e6c4be2107e9f5def94d58da8f2a18ca312.php)
-            <section class="profile">
-                <h2>Marketyard Profile</h2>
-                <p>Name: Amreli</p>
-                <p>Email: amreli@example.com</p>
-            </section>
-        
-            <section class="notifications">
-                <h2>Notifications</h2>
-                <p>No new notifications.</p>
-            </section>
-        
-            <section class="order-history">
-                <h2>Order History</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Order ID</th>
-                            <th>Crop Name</th>
-                            <th>Quantity (kg)</th>
-                            <th>Price per kg (₹)</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#001</td>
-                            <td>Tomato</td>
-                            <td>10</td>
-                            <td>₹30</td>
-                            <td>Completed</td>
-                        </tr>
-                        <tr>
-                            <td>#002</td>
-                            <td>Potato</td>
-                            <td>20</td>
-                            <td>₹20</td>
-                            <td>Pending</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-        
-            <section class="featured-products">
-                <h2>Featured Products</h2>
-                <p>Product 1: Fresh Tomatoes - ₹30/kg</p>
-                <p>Product 2: Organic Potatoes - ₹20/kg</p>
-            </section>
-        
-            <section class="search-bar">
-                <h2>Search Products</h2>
-                <input type="search" placeholder="Search for products..." onkeyup="searchProducts()">
-            </section>
-        
-            <section class="center-buttons">
-                <button onclick="browseProducts()">Browse Products</button>
-                <button onclick="viewCart()">View Cart</button>
-            </section>
-        </body>
-        </html>
-        
+        <h2>Your Profile</h2>
+        <p>Name: Amreli Consumer</p>
+        <p>Rewards: 200 Points 🌟</p>
+    </section>
+    <section class="notifications">
+        <h2>Notifications</h2>
+        <p>New natural produce available!</p>
+    </section>
+    <section class="order-history" id="order">
+        <h2>Order History</h2>
+        <table>
+            <thead><tr><th>Order ID</th><th>Crop</th><th>Qty (kg)</th><th>Price (₹)</th><th>Status</th></tr></thead>
+            <tbody>
+                <tr><td>#001</td><td>Tomato</td><td>10</td><td>₹30</td><td>Completed</td></tr>
+                <tr><td>#002</td><td>Potato</td><td>20</td><td>₹20</td><td>Pending</td></tr>
+            </tbody>
+        </table>
+    </section>
+    <section class="center-buttons">
+        <a href="browse_products.html">Browse Products</a>
+        <a href="view_cart.html">View Cart</a>
+    </section>
+</body>
+</html>

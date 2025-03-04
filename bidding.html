@@ -3,54 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bidding System</title>
+    <title>Bidding System - CropBid</title>
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e6f3e9, #fffde7);
         }
         header {
-            background-color: #4CAF50;
+            background: linear-gradient(90deg, #26A69A, #C0CA33, #FFCA28);
             color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        section {
             padding: 2rem;
             text-align: center;
+            animation: slideDown 1s ease;
+        }
+        section {
+            padding: 3rem 1rem;
+            text-align: center;
+            animation: fadeIn 1.5s ease;
         }
         table {
-            width: 100%;
+            width: 90%;
             max-width: 800px;
-            margin: auto;
+            margin: 2rem auto;
             border-collapse: collapse;
-            margin-top: 2rem;
         }
         th, td {
             padding: 1rem;
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             text-align: left;
         }
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-        button {
+        th { background: linear-gradient(45deg, #26A69A, #C0CA33); color: white; }
+        .bid-actions a {
             padding: 0.8rem 1.5rem;
-            background-color: #4CAF50;
+            background: linear-gradient(45deg, #26A69A, #C0CA33);
             color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        button:hover {
-            background-color: #45a049;
+        .bid-actions a:hover {
             transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #C0CA33, #FFCA28);
+        }
+        .bid-actions input {
+            padding: 0.5rem;
+            margin-right: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 50;
+        }
+        @media (max-width: 768px) {
+            table { font-size: 0.9rem; }
+            .bid-actions a { padding: 0.6rem 1rem; }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        function placeBid(cropName, bidAmount) {
+            const minPrice = cropName === 'Tomato' ? 25 : cropName === 'Potato' ? 15 : 20;
+            if (bidAmount < minPrice) {
+                alert(`Bid must be at least ₹${minPrice} for ${cropName}!`);
+            } else {
+                alert(`Bid placed for ${cropName} at ₹${bidAmount}! +20 Points`);
+            }
+        }
+        function showNegotiationModal(cropName) {
+            document.getElementById('modalCropName').innerText = cropName;
+            document.getElementById('negotiationModal').style.display = 'block';
+            document.getElementById('modalOverlay').style.display = 'block';
+        }
+        function closeModal() {
+            document.getElementById('negotiationModal').style.display = 'none';
+            document.getElementById('modalOverlay').style.display = 'none';
+        }
+        function submitNegotiation() {
+            const cropName = document.getElementById('modalCropName').innerText;
+            const qty = document.getElementById('negotiateQty').value;
+            const price = document.getElementById('negotiatePrice').value;
+            alert(`Negotiation submitted for ${cropName}: ${qty} kg at ₹${price}/kg`);
+            closeModal();
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -69,39 +126,36 @@
             <tbody>
                 <tr>
                     <td>Tomato</td>
-                    <td>₹30</td>
-                    <td>
-                        <button onclick="placeBid('Tomato', 35)">Bid ₹35</button>
+                    <td>₹30 (Min: ₹25)</td>
+                    <td class="bid-actions">
+                        <input type="number" id="bid-tomato" min="25" placeholder="₹35">
+                        <a href="#" onclick="placeBid('Tomato', document.getElementById('bid-tomato').value)">Place Bid</a>
+                        <a href="#" onclick="showNegotiationModal('Tomato')">Negotiate Bulk</a>
                     </td>
                 </tr>
                 <tr>
                     <td>Potato</td>
-                    <td>₹20</td>
-                    <td>
-                        <button onclick="placeBid('Potato', 25)">Bid ₹25</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Wheat</td>
-                    <td>₹25</td>
-                    <td>
-                        <button onclick="placeBid('Wheat', 30)">Bid ₹30</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Rice</td>
-                    <td>₹40</td>
-                    <td>
-                        <button onclick="placeBid('Rice', 45)">Bid ₹45</button>
+                    <td>₹20 (Min: ₹15)</td>
+                    <td class="bid-actions">
+                        <input type="number" id="bid-potato" min="15" placeholder="₹25">
+                        <a href="#" onclick="placeBid('Potato', document.getElementById('bid-potato').value)">Place Bid</a>
+                        <a href="#" onclick="showNegotiationModal('Potato')">Negotiate Bulk</a>
                     </td>
                 </tr>
             </tbody>
         </table>
     </section>
-    <script>
-        function placeBid(cropName, bidAmount) {
-            alert(`Bid placed for ${cropName} at ₹${bidAmount}!`);
-        }
-    </script>
+    <div id="modalOverlay" class="modal-overlay" onclick="closeModal()"></div>
+    <div id="negotiationModal" class="modal">
+        <h3>Negotiate Bulk Order for <span id="modalCropName"></span></h3>
+        <label>Quantity (kg):</label>
+        <input type="number" id="negotiateQty" placeholder="Enter quantity">
+        <label>Price per kg (₹):</label>
+        <input type="number" id="negotiatePrice" placeholder="Enter price">
+        <div style="margin-top: 1rem;">
+            <a href="#" onclick="submitNegotiation()">Submit</a>
+            <a href="#" onclick="closeModal()" style="background: #d32f2f;">Cancel</a>
+        </div>
+    </div>
 </body>
 </html>
