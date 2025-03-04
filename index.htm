@@ -19,7 +19,6 @@
             text-align: center;
             animation: slideDown 1s ease;
         }
-        header h1 { font-size: 2.5rem; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); }
         nav {
             display: flex;
             justify-content: center;
@@ -43,10 +42,13 @@
             text-align: center;
             padding: 4rem 2rem;
             background: url('https://via.placeholder.com/1500x500?text=Nature') no-repeat center/cover;
-            color: white;
+            color: rgb(0, 0, 0);
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
             animation: fadeIn 2s ease;
+            filter: blur(2px);
+            transition: filter 0.3s;
         }
+        .banner.active { filter: none; }
         .banner h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 0; }
         .banner p { font-size: clamp(1rem, 3vw, 1.2rem); margin: 1rem 0; }
         .cta-buttons {
@@ -79,18 +81,166 @@
             bottom: 0;
             width: 100%;
         }
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 50;
+            display: none;
+        }
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            width: 90%;
+            max-width: 450px;
+            animation: fadeInModal 0.5s ease;
+        }
+        .modal h2 { color: #26A69A; text-align: center; margin-bottom: 1rem; }
+        .modal .step { display: none; }
+        .modal .step.active { display: block; }
+        .modal label { margin-top: 1rem; color: #26A69A; font-weight: 600; }
+        .modal input, .modal select {
+            padding: 0.8rem;
+            margin-top: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 100%;
+            transition: border-color 0.3s;
+        }
+        .modal input:focus, .modal select:focus { border-color: #26A69A; outline: none; }
+        .modal .buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .modal a {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, #26A69A, #C0CA33);
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .modal a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #C0CA33, #FFCA28);
+        }
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .step-indicator span {
+            width: 10px;
+            height: 10px;
+            background: #ccc;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        .step-indicator span.active { background: #26A69A; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+        @keyframes fadeInModal { from { opacity: 0; transform: translate(-50%, -60%); } to { opacity: 1; transform: translate(-50%, -50%); } }
         @media (max-width: 768px) {
             header { padding: 1.5rem; }
             nav { gap: 1rem; padding: 0.5rem; }
             .banner { padding: 2rem 1rem; }
             .cta-buttons a { padding: 0.8rem 1.5rem; }
+            .modal { padding: 1.5rem; max-width: 90%; }
+            .modal .buttons { flex-direction: column; gap: 0.5rem; }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <script>
-        function navigateToPage(page) { window.location.href = page; }
+        let currentStep = 1;
+        let userRole = '';
+        let isSignup = false;
+
+        window.onload = function() {
+            showModal();
+        };
+
+        function showModal() {
+            document.getElementById('modalOverlay').style.display = 'block';
+            document.getElementById('authModal').style.display = 'block';
+            document.querySelector('.banner').classList.remove('active');
+            updateStep(1);
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').style.display = 'none';
+            document.getElementById('authModal').style.display = 'none';
+            document.querySelector('.banner').classList.add('active');
+            currentStep = 1;
+            updateStep(1);
+        }
+
+        function updateStep(step) {
+            currentStep = step;
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById(`step${step}`).classList.add('active');
+            document.querySelectorAll('.step-indicator span').forEach((s, i) => {
+                s.classList.toggle('active', i + 1 === step);
+            });
+        }
+
+        function selectRole(role) {
+            userRole = role;
+            updateStep(2);
+        }
+
+        function chooseAction(signup) {
+            isSignup = signup;
+            updateStep(3);
+            document.getElementById('step3Title').innerText = isSignup ? `Sign Up as ${userRole}` : `Login as ${userRole}`;
+        }
+
+        function submitForm() {
+            if (isSignup) {
+                const name = document.getElementById('signupName').value;
+                const email = document.getElementById('signupEmail').value;
+                const password = document.getElementById('signupPassword').value;
+                if (name && email && password) {
+                    alert(`Signed up as ${userRole}! Please log in.`);
+                    isSignup = false;
+                    updateStep(3);
+                    document.getElementById('step3Title').innerText = `Login as ${userRole}`;
+                } else {
+                    alert('Please fill in all fields!');
+                }
+            } else {
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                if (email && password) {
+                    alert(`Logged in as ${userRole}!`);
+                    window.location.href = userRole === 'Farmer' ? 'farmer.html' : 'customer.html';
+                } else {
+                    alert('Please fill in all fields!');
+                }
+            }
+        }
+
+        function goBack() {
+            if (currentStep === 3) updateStep(2);
+            else if (currentStep === 2) updateStep(1);
+        }
     </script>
 </head>
 <body>
@@ -102,18 +252,76 @@
         <a href="#">About Us</a>
         <a href="#">How It Works</a>
         <a href="forum.html">Community</a>
-        <a href="#">Login</a>
+        <a href="#" onclick="showModal()">Login</a>
     </nav>
     <section class="banner">
         <h1>Bridging Natural Farmers & Conscious Consumers</h1>
         <p>Fresh, verified natural produce at fair prices.</p>
         <div class="cta-buttons">
-            <a href="farmer.html" onclick="navigateToPage('farmer.html')">I’m a Farmer</a>
-            <a href="customer.html" onclick="navigateToPage('customer.html')">I’m a Consumer</a>
+            <a href="farmer.html">I’m a Farmer</a>
+            <a href="customer.html">I’m a Consumer</a>
         </div>
     </section>
     <footer>
         <p>© 2025 CropBid. All Rights Reserved.</p>
     </footer>
+
+    <!-- Modal Overlay and Content -->
+    <div id="modalOverlay" class="modal-overlay" onclick="closeModal()"></div>
+    <div id="authModal" class="modal">
+        <div class="step-indicator">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Step 1: Select Role -->
+        <div id="step1" class="step active">
+            <h2>Welcome to CropBid</h2>
+            <p>Please select your role:</p>
+            <div class="buttons">
+                <a href="#" onclick="selectRole('Farmer')">Farmer</a>
+                <a href="#" onclick="selectRole('Consumer')">Consumer</a>
+            </div>
+        </div>
+
+        <!-- Step 2: Login or Sign Up -->
+        <div id="step2" class="step">
+            <h2>Hello, <span id="roleDisplay"></span>!</h2>
+            <p>What would you like to do?</p>
+            <div class="buttons">
+                <a href="#" onclick="chooseAction(false)">Login</a>
+                <a href="#" onclick="chooseAction(true)">Sign Up</a>
+            </div>
+            <a href="#" onclick="goBack()" style="background: #d32f2f; margin-top: 1rem;">Back</a>
+        </div>
+
+        <!-- Step 3: Login/Sign-Up Form -->
+        <div id="step3" class="step">
+            <h2 id="step3Title">Login/Sign Up</h2>
+            <div id="loginForm">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password" required>
+            </div>
+            <div id="signupForm" style="display: none;">
+                <label for="signupName">Full Name</label>
+                <input type="text" id="signupName" placeholder="Enter your name" required>
+                <label for="signupEmail">Email</label>
+                <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                <label for="signupPassword">Password</label>
+                <input type="password" id="signupPassword" placeholder="Create a password" required>
+            </div>
+            <div class="buttons">
+                <a href="#" onclick="submitForm()">Submit</a>
+                <a href="#" onclick="goBack()" style="background: #d32f2f;">Back</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('roleDisplay').innerText = userRole;
+    </script>
 </body>
 </html>
